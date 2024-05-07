@@ -3,7 +3,7 @@
 
 class QuackBehavior {
  public:
-  virtual std::string Quack();
+  virtual std::string Quack() = 0;
 };
 
 class QuackingQuackBehavior : public QuackBehavior {
@@ -23,7 +23,7 @@ class DoingNothingQuackBehavior : public QuackBehavior {
 
 class FlyBehavior {
  public:
-  virtual std::string Fly();
+  virtual std::string Fly() = 0;
 };
 
 class FlyingFlyBehavior : public FlyBehavior {
@@ -40,7 +40,7 @@ class Duck {
  public:
   Duck() {
     fly_behavior_ = std::make_shared<FlyingFlyBehavior>();
-    quack_behavior_ = std::make_shared<QuackBehavior>();
+    quack_behavior_ = std::make_shared<QuackingQuackBehavior>();
   }
 
   virtual std::string Display() = 0;
