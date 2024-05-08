@@ -38,11 +38,6 @@ class DoingNothingFlyBehavior : public FlyBehavior {
 
 class Duck {
  public:
-  Duck() {
-    fly_behavior_ = std::make_shared<FlyingFlyBehavior>();
-    quack_behavior_ = std::make_shared<QuackingQuackBehavior>();
-  }
-
   virtual std::string Display() = 0;
   virtual std::string Swim() { return "swimming"; }
 
@@ -57,13 +52,19 @@ class Duck {
 
 class MallardDuck : public Duck {
  public:
-  MallardDuck() = default;
+  MallardDuck() {
+    fly_behavior_ = std::make_shared<FlyingFlyBehavior>();
+    quack_behavior_ = std::make_shared<QuackingQuackBehavior>();
+  }
   std::string Display() override { return "MallardDuck"; }
 };
 
 class RedheadDuck : public Duck {
  public:
-  RedheadDuck() = default;
+  RedheadDuck() {
+    fly_behavior_ = std::make_shared<FlyingFlyBehavior>();
+    quack_behavior_ = std::make_shared<QuackingQuackBehavior>();
+  }
   std::string Display() override { return "RedheadDuck"; }
 };
 
