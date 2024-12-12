@@ -46,9 +46,20 @@ class Whipping : public CoffeeTopping {
   }
 };
 
+class ChocoChip : public CoffeeTopping {
+ public:
+  ChocoChip(std::shared_ptr<Coffee> base_coffee) : CoffeeTopping(base_coffee) {}
+  std::string GetDescription() override {
+    return base_coffee_->GetDescription() +
+           ", ChocoChip: originally 20.0 but discounted to 5.0";
+  }
+  double GetCost() override { return base_coffee_->GetCost() + 5.0; }
+};
+
 int main() {
-  std::shared_ptr<Coffee> order = std::make_shared<Whipping>(
-      std::make_shared<Whipping>(std::make_shared<Espresso>()));
+  std::shared_ptr<Coffee> order =
+      std::make_shared<ChocoChip>(std::make_shared<Whipping>(
+          std::make_shared<Whipping>(std::make_shared<Espresso>())));
   std::cout << order->GetDescription() << std::endl;
   std::cout << "Total cost: " << order->GetCost() << std::endl;
   return 0;
